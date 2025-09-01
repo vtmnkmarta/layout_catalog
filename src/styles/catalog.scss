@@ -8,38 +8,41 @@ body {
 
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  color: #060b35;
+  color: variables.$colorNavDefault;
   font-display: swap;
 }
 
 .catalog {
-  padding: 50px 40px;
+  padding: variables.$catalogPadding-y variables.$catalogPadding-x;
   display: grid;
   justify-content: center;
-  gap: 46px 48px;
-  grid-template-columns: repeat(auto-fill, 200px);
+  gap: variables.$gapCol variables.$gapRow;
+
+  // row-gap: 46px;
+  // column-gap: 48px;
+  grid-template-columns: repeat(auto-fill, variables.$cardWidth);
 
   @media (max-width: 487px) {
     & {
-      grid-template-columns: repeat(1, 200px);
+      grid-template-columns: repeat(1, variables.$cardWidth);
     }
   }
 
   @media (min-width: 488px) {
     & {
-      grid-template-columns: repeat(2, 200px);
+      grid-template-columns: repeat(2, variables.$cardWidth);
     }
   }
 
   @media (min-width: 768px) {
     & {
-      grid-template-columns: repeat(3, 200px);
+      grid-template-columns: repeat(3, variables.$cardWidth);
     }
   }
 
   @media (min-width: 1024px) {
     & {
-      grid-template-columns: repeat(4, 200px);
+      grid-template-columns: repeat(4, variables.$cardWidth);
     }
   }
 }
@@ -49,7 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
 
-  width: 200px;
+  width: variables.$cardWidth;
   height: 408px;
   box-sizing: border-box;
   border: 1px solid #f3f3f3;
@@ -76,7 +79,7 @@ body {
   transition-duration: variables.$transitionDuration;
 
   &:hover {
-    color: #34568b;
+    color: variables.$colorTitleHover;
   }
 }
 
@@ -159,7 +162,8 @@ body {
   border: 1px solid variables.$blueAccent;
   border-radius: 5px;
   line-height: 16px;
-  color: #fff;
+  color: variables.$colorWhite;
+
   background-color: variables.$blueAccent;
   margin-block: 16px;
   text-decoration: none;
@@ -170,5 +174,5 @@ body {
 .card__button:hover {
   border-color: variables.$blueAccent;
   color: variables.$blueAccent;
-  background-color: #fff;
+  background-color: variables.$colorWhite;
 }
