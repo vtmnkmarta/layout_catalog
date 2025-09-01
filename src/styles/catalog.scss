@@ -1,7 +1,7 @@
 @use 'mixins';
 @use 'variables';
 
-body {
+body * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,11 +15,11 @@ body {
 .catalog {
   padding: variables.$catalogPadding-y variables.$catalogPadding-x;
   display: grid;
-  justify-content: center;
-  gap: variables.$gapCol variables.$gapRow;
+  place-content: center center;
 
-  // row-gap: 46px;
-  // column-gap: 48px;
+  justify-content: center;
+  gap: variables.$gapRow variables.$gapCol;
+  box-sizing: border-box;
   grid-template-columns: repeat(auto-fill, variables.$cardWidth);
 
   @media (max-width: 487px) {
@@ -57,50 +57,87 @@ body {
   box-sizing: border-box;
   border: 1px solid #f3f3f3;
   border-radius: 5px;
-  transition-duration: variables.$transitionDuration;
+  transition: transform 300ms;
+
+  &__image {
+    width: 160px;
+    height: 134px;
+    margin: 32px 19px 40px;
+  }
+
+  &__title {
+    @include mixins.font-size-big;
+
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-weight: 500;
+    transition: color 300ms;
+  }
+
+  &__code {
+    @include mixins.font-size-small;
+
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #616070;
+  }
+
+  &__reviews {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    p {
+      margin: 0;
+
+      @include mixins.font-size-small;
+    }
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 18px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: 166px;
+    height: 40px;
+
+    font-size: 14px;
+    font-weight: variables.$fontWidthBold;
+    border: 1px solid variables.$blueAccent;
+    border-radius: 5px;
+    line-height: 16px;
+    color: variables.$colorWhite;
+
+    background-color: variables.$blueAccent;
+    margin-block: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      color 300ms,
+      background-color 300ms;
+  }
+
+  &__button:hover {
+    border-color: variables.$blueAccent;
+    color: variables.$blueAccent;
+    background-color: variables.$colorWhite;
+  }
 
   &:hover {
     transform: scale(1.2);
-  }
-}
-
-.card__image {
-  width: 160px;
-  height: 134px;
-  margin: 32px 19px 40px;
-}
-
-.card__title {
-  @include mixins.font-size-big;
-
-  margin-top: 0;
-  margin-bottom: 4px;
-  font-weight: 500;
-  transition-duration: variables.$transitionDuration;
-
-  &:hover {
-    color: variables.$colorTitleHover;
-  }
-}
-
-.card__code {
-  @include mixins.font-size-small;
-
-  margin-top: 0;
-  margin-bottom: 16px;
-  color: #616070;
-}
-
-.card__reviews {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-
-  p {
-    margin: 0;
-
-    @include mixins.font-size-small;
+    & .card__title {
+      color: variables.$colorTitleHover;
+    }
   }
 }
 
@@ -129,13 +166,6 @@ body {
   }
 }
 
-.card__price {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 18px;
-}
-
 .price-text {
   @include mixins.font-size-big;
 
@@ -146,33 +176,4 @@ body {
   font-size: 16px;
   font-weight: variables.$fontWidthBold;
   line-height: 18px;
-}
-
-.card__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-sizing: border-box;
-  width: 166px;
-  height: 40px;
-
-  font-size: 14px;
-  font-weight: variables.$fontWidthBold;
-  border: 1px solid variables.$blueAccent;
-  border-radius: 5px;
-  line-height: 16px;
-  color: variables.$colorWhite;
-
-  background-color: variables.$blueAccent;
-  margin-block: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition-duration: variables.$transitionDuration;
-}
-
-.card__button:hover {
-  border-color: variables.$blueAccent;
-  color: variables.$blueAccent;
-  background-color: variables.$colorWhite;
 }
